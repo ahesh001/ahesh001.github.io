@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>My Web Page with Embedded Link</title>
-  <link rel="stylesheet" href="styles.css"> <!-- Optional: Link to external CSS file -->
 </head>
 <body>
   <header>
-    <h1>Welcome to My Web Page</h1>
+    <div style="position: relative; width: 100%; height: 0; padding-top: 56.25%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); overflow: hidden; border-radius: 8px; will-change: transform;">
+      <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;"
+        src="https://www.canva.com/design/DAGVchVmxiQ/IWgKz6YNsXNFLNRf3bu2MA/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+      </iframe>
+    </div>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -20,24 +23,5 @@
     </nav>
   </header>
 
-  <main>
-    <section>
-      <h2>Embedded Content</h2>
-      <div style="position: relative; width: 100%; height: 0; padding-top: 56.25%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">
-        <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;"
-          src="https://www.canva.com/design/DAGVchVmxiQ/IWgKz6YNsXNFLNRf3bu2MA/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-        </iframe>
-      </div>
-      <p>
-        <a href="https://www.canva.com/design/DAGVchVmxiQ/IWgKz6YNsXNFLNRf3bu2MA/watch?utm_content=DAGVchVmxiQ&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">
-          Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper
-        </a> by Akeem Heshimu
-      </p>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2024 Your Name. All rights reserved.</p>
-  </footer>
 </body>
 </html>
