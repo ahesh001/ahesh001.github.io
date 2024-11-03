@@ -26,22 +26,36 @@
     }
     nav {
       position: absolute;
-      top: 20px;
+      top: 20px; /* Adjust to your preference */
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 20px;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 10px 20px;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
       border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      padding: 0;
     }
     nav a {
-      color: white;
+      padding: 10px 20px;
       text-decoration: none;
       font-size: 18px;
+      color: white;
+      background-color: transparent;
+      border-radius: 5px 5px 0 0;
+      border: 1px solid transparent;
+      border-bottom: none;
+      transition: background-color 0.3s, color 0.3s;
     }
     nav a:hover {
-      text-decoration: underline;
+      background-color: #555; /* Hover color */
+      color: white;
+    }
+    nav a.active {
+      background-color: #333; /* Active tab color */
+      color: white;
+      border-color: #333;
+      border-bottom: 2px solid #333; /* Highlight active tab */
     }
     main {
       flex: 1; /* Allows main content to grow and take up space */
@@ -58,18 +72,56 @@
 
 <body>
   <header>
-   <video autoplay muted loop playsinline>
-  <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+    <video autoplay muted loop playsinline>
+      <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
     <nav>
-      <ul>
-        <li><a href="about_me.html">About Me</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <a href="index.html" class="active">Home</a>
+      <a href="about_me.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
+ <main>
+    <section>
+      
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 ahesh001. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Function to set the active tab when a link is clicked
+    document.addEventListener('DOMContentLoaded', () => {
+      const navLinks = document.querySelectorAll('nav a');
+
+      // Function to update the active class
+      const setActiveTab = () => {
+        const currentPath = window.location.pathname.split('/').pop(); // Get the current file name
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      };
+
+      // Initial check on page load
+      setActiveTab();
+
+      // Add click event listeners to each link
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        });
+      });
+    });
+  </script>
 </body>
 </html>
