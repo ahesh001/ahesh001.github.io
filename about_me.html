@@ -72,14 +72,36 @@
   </main>
 
   <script>
-    // Optional: Add JavaScript to dynamically set the active tab
+  document.addEventListener('DOMContentLoaded', () => {
     const links = document.querySelectorAll('nav a');
+
+    // Function to set the active class based on the current URL hash
+    const setActiveTab = () => {
+      const currentHash = window.location.hash || '#home'; // Default to home if no hash
+      links.forEach(link => {
+        if (link.getAttribute('href') === currentHash) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    };
+
+    // Initial check on page load
+    setActiveTab();
+
+    // Update active class on hash change
+    window.addEventListener('hashchange', setActiveTab);
+
+    // Optional: Add click event to set active class when clicked
     links.forEach(link => {
-      link.addEventListener('click', function() {
+      link.addEventListener('click', function () {
         links.forEach(l => l.classList.remove('active'));
         this.classList.add('active');
       });
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
