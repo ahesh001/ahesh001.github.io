@@ -4,15 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My Web Page with Embedded Link</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      width: 100%;
+      overflow: hidden;
+      display: block;
+      position: relative;
+    }
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
 </head>
 <body>
   <header>
-    <div style="position: relative; width: 100%; height: 0; padding-top: 56.25%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); overflow: hidden; border-radius: 8px; will-change: transform;">
-      <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;"
-        src="https://www.canva.com/design/DAGVchVmxiQ/IWgKz6YNsXNFLNRf3bu2MA/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-      </iframe>
-    </div>
+    <video autoplay muted loop playsinline>
+      <source src="https://www.canva.com/design/DAGVchVmxiQ/IWgKz6YNsXNFLNRf3bu2MA/watch?embed" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -22,6 +38,14 @@
       </ul>
     </nav>
   </header>
+
+  <main>
+    <section>
+      <h2>Welcome to GitHub-Io page</h2>
+      <p>This site is designed to show Current/Past Projects, About Me, and a Contact Page.</p>
+    </section>
+  </main>
+
 
 </body>
 </html>
