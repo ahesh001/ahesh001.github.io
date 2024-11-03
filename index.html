@@ -3,19 +3,28 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
     header {
-      text-align: center;
+      width: 100%;
       padding: 20px;
+      background-color: #f0f0f0; /* Optional: Adds a background color */
     }
     img {
-      max-width: 100%; /* Make sure the image scales based on the container width */
-      height: auto; /* Maintain aspect ratio */
+      display: block;
+      margin: 0 auto;
+      max-width: 100%; /* Stretches within the container width */
+      height: auto;
     }
     nav ul {
       display: flex;
       justify-content: center;
       list-style-type: none;
       padding: 0;
+      margin: 10px 0;
     }
     nav ul li {
       margin: 0 15px;
@@ -40,3 +49,4 @@
 </header>
 </body>
 </html>
+
