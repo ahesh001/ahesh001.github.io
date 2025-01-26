@@ -13,88 +13,153 @@
       display: flex;
       flex-direction: column;
     }
-    
     header {
-  background-color: #666;
-  padding: 30px;
-  text-align: center;
-  font-size: 35px;
-  color: white;
-  }
-nav {
-  float: left;
-  width: 30%;
-  height: 300px; /* only for demonstration, should be removed */
-  background: #ccc;
-  padding: 20px;
-}
-
-/* Style the list inside the menu */
-nav ul {
+      position: relative;
+      width: 100%;
+      height: 60vh; /* Adjust as needed */
+      overflow: hidden;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    nav {
+      position: absolute;
+      top: 20px; /* Adjust to your preference */
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      padding: 0;
+    }
+    nav a {
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      background-color: transparent;
+      border-radius: 5px 5px 0 0;
+      border: 1px solid transparent;
+      border-bottom: none;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    nav a:hover {
+      background-color: #555; /* Hover color */
+      color: white;
+    }
+    nav a.active {
+      background-color: #333; /* Active tab color */
+      color: white;
+      border-color: #333;
+      border-bottom: 2px solid #333; /* Highlight active tab */
+    }
+    main {
+      flex: 1; /* Allows main content to grow and take up space */
+      padding: 20px;
+    }
+    
+    /* Style the list inside the menu */
+  nav ul {
   list-style-type: none;
   padding: 0;
-}
+  }
 
-article {
+  article {
   float: left;
   padding: 20px;
   width: 70%;
   background-color: #f1f1f1;
   height: 300px; /* only for demonstration, should be removed */
-}
+  }
 
-/* Clear floats after the columns */
-section::after {
+  /* Clear floats after the columns */
+  section::after {
   content: "";
   display: table;
   clear: both;
-}
-
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-@media (max-width: 600px) {
-  nav, article {
-    width: 100%;
-    height: auto;
   }
-}
-</style>
+    
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
 </head>
+
 <body>
+  <header>
+    <video autoplay muted loop playsinline>
+      <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="about_me.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-<h2>CSS Layout Float</h2>
-<p>In this example, we have created a header, two columns/boxes and a footer. On smaller screens, the columns will stack on top of each other.</p>
-<p>Resize the browser window to see the responsive effect (you will learn more about this in our next chapter - HTML Responsive.)</p>
-
-<header>
-  <h2>Projects</h2>
+ <main>
+    <header>
+  <h2>Cities</h2>
 </header>
 
 <section>
   <nav>
     <ul>
-      <li><a href="#">Public Projects</a></li>
-      <li><a href="#">Private Projects</a></li>
-      <li><a href="#">3D-Printed Projects</a></li>
+      <li><a href="#">London</a></li>
+      <li><a href="#">Paris</a></li>
+      <li><a href="#">Tokyo</a></li>
     </ul>
   </nav>
   
   <article>
-    <h1>Public Projects</h1>
-    <p>Here are a few of my listed Public Projects (free to download)</p>
+    <h1>London</h1>
+    <p>London is the capital city of England. It is the most populous city in the  United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+    <p>Standing on the River Thames, London has been a major settlement for two millennia, its history going back to its founding by the Romans, who named it Londinium.</p>
   </article>
 </section>
+  </main>
 
-    <article>
-    <h1>Private Projects</h1>
-    <p>Contains Private Projects being worked on in the near future.</p></p>
-  </article>
-</section>
+  <footer>
+    <p>&copy; 2024 ahesh001. All rights reserved.</p>
+  </footer>
 
-    <article>
-    <h1>3D-Printed Projects</h1>
-    <p>3D-Printed Projects for learning and education.</p>
-  </article>
-</section>
+  <script>
+    // Function to set the active tab when a link is clicked
+    document.addEventListener('DOMContentLoaded', () => {
+      const navLinks = document.querySelectorAll('nav a');
 
+      // Function to update the active class
+      const setActiveTab = () => {
+        const currentPath = window.location.pathname.split('/').pop(); // Get the current file name
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      };
+
+      // Initial check on page load
+      setActiveTab();
+
+      // Add click event listeners to each link
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        });
+      });
+    });
+  </script>
 </body>
 </html>
