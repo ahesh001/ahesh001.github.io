@@ -80,15 +80,29 @@
   min-width: 50px;
   text-align: center;
   }
-
-  .input-field {
+    
+  input[type=text], select, textarea {
   width: 100%;
-  padding: 10px;
-  outline: none;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
   }
 
-  .input-field:focus {
-  border: 2px solid dodgerblue;
+  input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  }
+
+  input[type=submit]:hover {
+  background-color: #45a049;
   }
 
   /* Set a style for the submit button */
