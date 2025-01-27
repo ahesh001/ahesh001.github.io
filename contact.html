@@ -127,28 +127,31 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  
+
  <main>
-  <form action="/action_page.php" style="max-width:500px;margin:auto">
-  <h1>Contact Me:</h1>
-  <div class="input-container">
-    <i class="fa fa-user icon"></i>
-    <input class="input-field" type="text" placeholder="First Name" name="fname">
-  </div>
-
+   <h1>Contact Me:</h1>
    <div class="input-container">
-    <i class="fa fa-user icon"></i>
-    <input class="input-field" type="text" placeholder="Last Name" name="lname">
-  </div>
+    <form action="/action_page.php" style="max-width:500px;margin:auto">
+      <i class="fa fa-user icon"></i>
+      <label for="fname">First Name </label>
+      <input type="text" id="fname" placeholder="First Name">
 
-  <div class="input-container">
-    <i class="fa fa-envelope icon"></i>
-    <input class="input-field" type="text" placeholder="Email" name="email">
-  </div>
+      <i class="fa fa-user icon"></i>
+      <label for="lname">Last Name </label>
+      <input type="text" id="lname" placeholder="Last Name">
+      
+      <i class="fa fa-envelope icon"></i>
+      <label for="email">Email </label>
+      <input type="text" placeholder="something.email.com">
 
-  <button type="submit" class="btn">Send</button>
+      
+      <label for="subject">Subject</label>
+      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+      <input type="submit" value="Submit">
   </form>
- </main>
+ </div>
+</main>
   
   <footer>
     <p>&copy; 2024 ahesh001. All rights reserved.</p>
