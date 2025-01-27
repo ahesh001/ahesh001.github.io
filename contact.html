@@ -105,6 +105,12 @@
   background-color: #45a049;
   }
 
+  .container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  }
+
   /* Set a style for the submit button */
   .btn {
   background-color: dodgerblue;
@@ -144,20 +150,16 @@
 
  <main>
    <h1>Contact Me:</h1>
-   <div class="input-container">
+   <div class="container">
     <form action="/action_page.php" style="max-width:500px;margin:auto">
-      <i class="fa fa-user icon"></i>
       <label for="fname">First Name </label>
       <input type="text" id="fname" placeholder="First Name">
 
-      <i class="fa fa-user icon"></i>
       <label for="lname">Last Name </label>
       <input type="text" id="lname" placeholder="Last Name">
       
-      <i class="fa fa-envelope icon"></i>
       <label for="email">Email </label>
       <input type="text" placeholder="something.email.com">
-
       
       <label for="subject">Subject</label>
       <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
