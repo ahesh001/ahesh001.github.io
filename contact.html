@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- Add icon library -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     body, html {
       margin: 0;
@@ -151,20 +149,26 @@
  <main>
    <h1>Contact Me:</h1>
    <div class="container">
-    <form action="/action_page.php" style="max-width:500px;margin:auto">
+    <form method="post" id="contact-form" style="max-width:500px;margin:auto">
+      
+      <?php
+      $errorMessage = ''; // Define $errorMessage
+      echo(!empty($errorMessage) ? $errorMessage : '');
+    ?>
+      
       <label for="fname">First Name </label>
-      <input type="text" id="fname" placeholder="First Name">
+      <input type="text" id="fname" name="fname" placeholder="First Name" required>
 
       <label for="lname">Last Name </label>
-      <input type="text" id="lname" placeholder="Last Name">
+      <input type="text" id="lname" name="lname" placeholder="Last Name" required>
       
       <label for="email">Email </label>
-      <input type="text" placeholder="something@email.com">
+      <input type="email" id="email" name="email" placeholder="something@email.com" required>
       
       <label for="subject">Subject</label>
-      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px" required></textarea>
 
-      <input type="submit" value="Submit">
+      <input type="submit" value="Send">
   </form>
  </div>
 </main>
@@ -173,6 +177,47 @@
     <p>&copy; 2024 ahesh001. All rights reserved.</p>
   </footer>
 
+  <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script> 
+  <script>
+    const constraints = {
+      fname: {
+        presence: { allowEmpty: false }
+      },
+      lname: {
+        presence: { allowEmpty: false }
+      },
+      email: {
+        presence: { allowEmpty: false },
+        email: true
+      },
+      subject: {
+        presence: { allowEmpty: false }
+      }
+    };
+
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', function(event) {
+      const formValues = {
+        fname: form.elements.fname.value,
+        lname: form.elements.fname.value,
+        email: form.elements.email.value,
+        subject: form.elements.subject.value
+      };
+
+      const errors = validate(formValues, constraints);
+      if (errors) {
+        event.preventDefault();
+        const errorMessage = Object.values(errors)
+          .map(function(fieldValues) {
+            return fieldValues.join(', ');
+          })
+          .join("\n");
+
+        alert(errorMessage);
+      }
+    }, false);
+
+  </script>
   <script>
     // Function to set the active tab when a link is clicked
     document.addEventListener('DOMContentLoaded', () => {
@@ -202,5 +247,7 @@
       });
     });
   </script>
+
+  
 </body>
 </html>
