@@ -88,9 +88,9 @@
 <body>
   <header>
     <video id="headerVideo" autoplay muted loop playsinline>
-      <source src="images/your-video.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-  </video>
+  <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
   <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
 </div>
     <nav>
@@ -151,6 +151,12 @@
 
       // Initial check on page load
       setActiveTab();
+
+      // Disable right-click context menu on the video element
+      const headerVideo = document.getElementById('headerVideo');
+      headerVideo.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
 
       // Add click event listeners to each link
       navLinks.forEach(link => {
