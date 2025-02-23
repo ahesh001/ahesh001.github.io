@@ -83,8 +83,7 @@
       text-align: center;
       padding: 20px;
     }
-
-        /* Responsive adjustments */
+    /* Responsive adjustments */
     @media screen and (max-width: 768px) {
       header {
         height: 40vh; /* Reduce header height on tablets */
@@ -94,35 +93,29 @@
         left: 50%;
         transform: translateX(-50%);
       }
-      nav ul {
-        flex-direction: column; /* Stack nav items vertically */
-      }
-      nav ul li {
-        width: 100%;
-        text-align: center;
-      }
-      .dropdown-menu {
-        position: static; /* Allow dropdown items to stack normally */
-      }
-    }
-    
-    @media screen and (max-width: 480px) {
-      nav ul li a {
+      /* Instead of stacking nav links vertically, adjust font-size and padding */
+      nav a {
         font-size: 16px;
         padding: 8px 12px;
+      }
+    }
+    @media screen and (max-width: 480px) {
+      nav a {
+        font-size: 14px;
+        padding: 6px 10px;
       }
     }
   </style>
 </head>
 <body>
   <header>
-<div class="video-container" style="position: relative; width: 100%; height: 100%;">
-  <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
-      <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
-</div>
+    <div class="video-container" style="position: relative; width: 100%; height: 100%;">
+      <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+        <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+    </div>
     <nav>
       <a href="index.html" class="active">Home</a>
       <a href="about_me.html">About</a>
@@ -166,10 +159,9 @@
     // Function to set the active tab when a link is clicked
     document.addEventListener('DOMContentLoaded', () => {
       const navLinks = document.querySelectorAll('nav a');
-
-      // Function to update the active class
+      // Function to update the active class based on URL
       const setActiveTab = () => {
-        const currentPath = window.location.pathname.split('/').pop(); // Get the current file name
+        const currentPath = window.location.pathname.split('/').pop();
         navLinks.forEach(link => {
           if (link.getAttribute('href') === currentPath) {
             link.classList.add('active');
@@ -182,18 +174,23 @@
       // Initial check on page load
       setActiveTab();
 
-      // Disable right-click context menu on the video element
+      // Disable right-click context menu on the video element (if present)
       const headerVideo = document.getElementById('headerVideo');
-      headerVideo.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
+      if(headerVideo) {
+        headerVideo.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+        });
+      }
 
-        // Optionally, disable right-click on the overlay as well
-        document.querySelector('.overlay').addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-      });
+      // Optionally, disable right-click on the overlay as well
+      const overlay = document.querySelector('.overlay');
+      if(overlay) {
+        overlay.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+        });
+      }
 
-      // Add click event listeners to each link
+      // Add click event listeners to each nav link
       navLinks.forEach(link => {
         link.addEventListener('click', () => {
           navLinks.forEach(l => l.classList.remove('active'));
