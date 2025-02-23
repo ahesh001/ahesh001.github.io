@@ -25,27 +25,28 @@
       height: 100%;
       object-fit: cover;
     }
-    /* Navigation styling */
+    /* Fixed navigation bar appears over the video */
     nav {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
       background: rgba(0, 0, 0, 0.8);
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
       padding: 0;
     }
     nav ul {
       list-style: none;
       margin: 0;
       padding: 0;
-      display: flex; /* Always keep nav items in a row */
+      display: flex;
+      justify-content: center; /* Center nav items */
     }
     nav ul li {
       position: relative;
     }
     nav ul li a {
+      display: block;
       padding: 10px 20px;
       text-decoration: none;
       font-size: 18px;
@@ -55,7 +56,6 @@
       border: 1px solid transparent;
       border-bottom: none;
       transition: background-color 0.3s, color 0.3s;
-      display: block;
     }
     nav ul li a:hover {
       background-color: #555;
@@ -75,7 +75,7 @@
       left: 0;
       background: rgba(0, 0, 0, 0.8);
       border-radius: 0 0 10px 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       padding: 0;
       margin: 0;
       list-style: none;
@@ -89,18 +89,20 @@
     nav ul li:hover .dropdown-menu {
       display: block;
     }
+    /* Main content with top margin to avoid overlap with fixed nav */
     main {
-      flex: 1; /* Allows main content to grow and take up space */
+      flex: 1;
       padding: 20px;
+      margin-top: 60px; /* Adjust if your nav height changes */
     }
-    /* New container for the introduction section */
+    /* Introduction section */
     .intro-container {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
     }
     .bio {
-      flex: 0 0 40%; /* Adjust the width as needed */
+      flex: 0 0 40%;
     }
     .bio img {
       width: 100%;
@@ -118,21 +120,15 @@
     /* Responsive adjustments */
     @media screen and (max-width: 768px) {
       header {
-        height: 40vh; /* Reduce header height on tablets */
+        height: 40vh;
       }
-      nav {
-        top: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      /* Instead of stacking nav links vertically, adjust font-size and padding */
-      nav a {
+      nav ul li a {
         font-size: 16px;
         padding: 8px 12px;
       }
     }
     @media screen and (max-width: 480px) {
-      nav a {
+      nav ul li a {
         font-size: 14px;
         padding: 6px 10px;
       }
@@ -148,25 +144,25 @@
       </video>
       <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
     </div>
-    <nav>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about_me.html">About</a></li>
-    <li>
-      <a href="projects.html">Projects</a>
-      <ul class="dropdown-menu">
-        <li><a href="LifeOnceAgain.html">LifeOnceAgain</a></li>
-        <li><a href="LotteryNumberGenerator.html">LotteryNumberGenerator</a></li>
-        <li><a href="Labor_Tracker_Pro.html">Labor_Tracker_Pro</a></li>
-        <li><a href="BlockChainPaymentSystem.html">BlockChainPaymentSystem</a></li>
-        <li><a href="3D-Projects.html">3D-Projects</a></li>
-      </ul>
-    </li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
-
   </header>
+  <!-- Fixed Navigation Bar Over the Video -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about_me.html" class="active">About</a></li>
+      <li>
+        <a href="projects.html">Projects</a>
+        <ul class="dropdown-menu">
+          <li><a href="LifeOnceAgain.html">LifeOnceAgain</a></li>
+          <li><a href="LotteryNumberGenerator.html">LotteryNumberGenerator</a></li>
+          <li><a href="Labor_Tracker_Pro.html">Labor_Tracker_Pro</a></li>
+          <li><a href="BlockChainPaymentSystem.html">BlockChainPaymentSystem</a></li>
+          <li><a href="3D-Projects.html">3D-Projects</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
   <main>
     <section class="introduction">
       <div class="intro-container">
@@ -200,10 +196,9 @@
     <p>&copy; 2025 ahesh001. All rights reserved.</p>
   </footer>
   <script>
-    // Function to set the active tab when a link is clicked
+    // Set active tab based on the current URL and update on click
     document.addEventListener('DOMContentLoaded', () => {
       const navLinks = document.querySelectorAll('nav a');
-      // Function to update the active class based on URL
       const setActiveTab = () => {
         const currentPath = window.location.pathname.split('/').pop();
         navLinks.forEach(link => {
@@ -214,27 +209,22 @@
           }
         });
       };
-
-      // Initial check on page load
       setActiveTab();
-
       // Disable right-click context menu on the video element (if present)
       const headerVideo = document.getElementById('headerVideo');
-      if(headerVideo) {
+      if (headerVideo) {
         headerVideo.addEventListener('contextmenu', function(e) {
           e.preventDefault();
         });
       }
-
       // Optionally, disable right-click on the overlay as well
       const overlay = document.querySelector('.overlay');
-      if(overlay) {
+      if (overlay) {
         overlay.addEventListener('contextmenu', function(e) {
           e.preventDefault();
         });
       }
-
-      // Add click event listeners to each nav link
+      // Update active state on click
       navLinks.forEach(link => {
         link.addEventListener('click', () => {
           navLinks.forEach(l => l.classList.remove('active'));
@@ -245,3 +235,4 @@
   </script>
 </body>
 </html>
+
