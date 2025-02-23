@@ -93,22 +93,6 @@
       flex: 1; /* Allows main content to grow and take up space */
       padding: 20px;
     }
-    /* New container for the introduction section */
-    .intro-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .bio {
-      flex: 0 0 40%; /* Adjust the width as needed */
-    }
-    .bio img {
-      width: 100%;
-      height: auto;
-    }
-    .intro-content {
-      flex: 1;
-    }
     footer {
       background-color: #333;
       color: white;
@@ -178,7 +162,9 @@
           }
         });
       };
-       // Disable right-click context menu on the video element (if present)
+      setActiveTab();
+
+             // Disable right-click context menu on the video element (if present)
       const headerVideo = document.getElementById('headerVideo');
       if(headerVideo) {
         headerVideo.addEventListener('contextmenu', function(e) {
@@ -193,7 +179,6 @@
           e.preventDefault();
         });
       }
-      setActiveTab();
       // Add click event listeners to update active state on click
       navLinks.forEach(link => {
         link.addEventListener('click', () => {
