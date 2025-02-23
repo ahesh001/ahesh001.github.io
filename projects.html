@@ -25,13 +25,13 @@
       height: 100%;
       object-fit: cover;
     }
-    /* Fixed navigation bar placed outside the header */
+    /* Fixed navigation bar appears over the video */
     nav {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0,0,0,0.8);
       z-index: 1000;
       padding: 0;
     }
@@ -40,13 +40,7 @@
       margin: 0;
       padding: 0;
       display: flex;
-      white-space: nowrap; /* Prevent wrapping */
-      overflow-x: auto;    /* Allow horizontal scrolling if needed */
-      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    }
-    /* Optional: Hide scrollbar on WebKit browsers */
-    nav::-webkit-scrollbar {
-      display: none;
+      justify-content: center; /* Center the nav items */
     }
     nav ul li {
       position: relative;
@@ -57,6 +51,7 @@
       text-decoration: none;
       font-size: 18px;
       color: white;
+      background-color: transparent;
       border-radius: 5px 5px 0 0;
       border: 1px solid transparent;
       border-bottom: none;
@@ -78,9 +73,9 @@
       position: absolute;
       top: 100%; /* Position dropdown below parent */
       left: 0;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0,0,0,0.8);
       border-radius: 0 0 10px 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       padding: 0;
       margin: 0;
       list-style: none;
@@ -94,11 +89,11 @@
     nav ul li:hover .dropdown-menu {
       display: block;
     }
-    /* Main content */
+    /* Main content with margin-top to avoid overlap with fixed nav */
     main {
       flex: 1;
       padding: 20px;
-      margin-top: 60px; /* Give space for the fixed nav */
+      margin-top: 60px;
     }
     footer {
       background-color: #333;
@@ -128,7 +123,7 @@
       Your browser does not support the video tag.
     </video>
   </header>
-  <!-- Fixed Navigation Bar -->
+  <!-- Fixed Navigation Bar Over the Video -->
   <nav>
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -168,17 +163,16 @@
         });
       };
       setActiveTab();
-      // Disable right-click context menu on the video element (if present)
+             // Disable right-click context menu on the video element (if present)
       const headerVideo = document.getElementById('headerVideo');
-      if(headerVideo) {
+      if (headerVideo) {
         headerVideo.addEventListener('contextmenu', function(e) {
           e.preventDefault();
         });
       }
-
       // Optionally, disable right-click on the overlay as well
       const overlay = document.querySelector('.overlay');
-      if(overlay) {
+      if (overlay) {
         overlay.addEventListener('contextmenu', function(e) {
           e.preventDefault();
         });
