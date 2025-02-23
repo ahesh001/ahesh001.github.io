@@ -16,7 +16,7 @@
     header {
       position: relative;
       width: 100%;
-      height: 60vh; /* Adjust as needed */
+      height: 60vh; /* Default header height */
       overflow: hidden;
     }
     video {
@@ -26,7 +26,7 @@
     }
     nav {
       position: absolute;
-      top: 20px; /* Adjust to your preference */
+      top: 20px; /* Adjust as needed */
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -57,87 +57,115 @@
       border-color: #333;
       border-bottom: 2px solid #333; /* Highlight active tab */
     }
-    main {
-      flex: 10; /* Allows main content to grow and take up space */
+     main {
+      flex: 1; /* Allows main content to grow and take up space */
       padding: 20px;
     }
-    body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
-
-  .input-container {
-  display: -ms-flexbox; /* IE10 */
-  display: flex;
-  width: 100%;
-  margin-bottom: 15px;
-  }
-
-  .icon {
-  padding: 10px;
-  background: dodgerblue;
-  color: white;
-  min-width: 50px;
-  text-align: center;
-  }
-    
-  input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-  }
-
-  input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  }
-
-  input[type=submit]:hover {
-  background-color: #45a049;
-  }
-
-  .container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  }
-
-  /* Set a style for the submit button */
-  .btn {
-  background-color: dodgerblue;
-  color: white;
-  padding: 15px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-  }
-
-  .btn:hover {
-  opacity: 1;
-  }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    /* Ensure each label is displayed as a block element */
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    .input-container {
+      display: flex;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    .icon {
+      padding: 10px;
+      background: dodgerblue;
+      color: white;
+      min-width: 50px;
+      text-align: center;
+    }
+    input[type=text], input[type=email], select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
+    }
+    input[type=submit] {
+      background-color: #04AA6D;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+    .container {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+    /* Set a style for the submit button */
+    .btn {
+      background-color: dodgerblue;
+      color: white;
+      padding: 15px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+    .btn:hover {
+      opacity: 1;
+    }
     footer {
       background-color: #333;
       color: white;
       text-align: center;
       padding: 20px;
     }
+    
+    /* Responsive adjustments */
+    @media screen and (max-width: 768px) {
+      header {
+        height: 40vh; /* Reduced header height on tablets */
+      }
+      nav {
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: column; /* Stack nav items vertically */
+      }
+      nav a {
+        font-size: 16px;
+        padding: 8px 12px;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      nav a {
+        font-size: 14px;
+        padding: 6px 10px;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <header>
-    <video autoplay muted loop playsinline>
+  <div class="video-container" style="position: relative; width: 100%; height: 100%;">
+  <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
       <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    Your browser does not support the video tag.
+  </video>
+  <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+</div>
     <nav>
       <a href="index.html" class="active">Home</a>
       <a href="about_me.html">About</a>
@@ -146,34 +174,33 @@
     </nav>
   </header>
 
- <main>
-   <h1>Contact Me:</h1>
-   <div class="container">
-     <form action="https://formspree.io/f/mbldapwb" method="POST" id="contact-form" style="max-width:500px;margin:auto">
-      <?php
-      $errorMessage = ''; // Define $errorMessage
-      echo(!empty($errorMessage) ? $errorMessage : '');
-    ?>
-      
-      <label for="fname">First Name </label>
-      <input type="text" id="fname" name="fname" placeholder="First Name" required>
+  <main>
+    <h1>Contact Me:</h1>
+    <div class="container">
+      <form action="https://formspree.io/f/mbldapwb" method="POST" id="contact-form">
+        <?php
+          $errorMessage = ''; // Define $errorMessage
+          echo(!empty($errorMessage) ? $errorMessage : '');
+        ?>
+        <label for="fname">First Name </label>
+        <input type="text" id="fname" name="fname" placeholder="First Name" required>
 
-      <label for="lname">Last Name </label>
-      <input type="text" id="lname" name="lname" placeholder="Last Name" required>
-      
-      <label for="email">Email </label>
-      <input type="email" id="email" name="email" placeholder="something@email.com" required>
-      
-      <label for="subject">Subject</label>
-      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px" required></textarea>
+        <label for="lname">Last Name </label>
+        <input type="text" id="lname" name="lname" placeholder="Last Name" required>
+        
+        <label for="email">Email </label>
+        <input type="email" id="email" name="email" placeholder="something@email.com" required>
+        
+        <label for="subject">Subject</label>
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px" required></textarea>
 
-      <input type="submit" value="Send">
-  </form>
- </div>
-</main>
+        <input type="submit" value="Send">
+      </form>
+    </div>
+  </main>
   
   <footer>
-    <p>&copy; 2024 ahesh001. All rights reserved.</p>
+    <p>&copy; 2025 ahesh001. All rights reserved.</p>
   </footer>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script> 
@@ -198,7 +225,7 @@
     form.addEventListener('submit', function(event) {
       const formValues = {
         fname: form.elements.fname.value,
-        lname: form.elements.fname.value,
+        lname: form.elements.lname.value,
         email: form.elements.email.value,
         subject: form.elements.subject.value
       };
@@ -215,7 +242,6 @@
         alert(errorMessage);
       }
     }, false);
-
   </script>
   <script>
     // Function to set the active tab when a link is clicked
@@ -237,6 +263,17 @@
       // Initial check on page load
       setActiveTab();
 
+       // Disable right-click context menu on the video element
+      const headerVideo = document.getElementById('headerVideo');
+      headerVideo.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+
+        // Optionally, disable right-click on the overlay as well
+        document.querySelector('.overlay').addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+      });
+
       // Add click event listeners to each link
       navLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -246,7 +283,5 @@
       });
     });
   </script>
-
-  
 </body>
 </html>
