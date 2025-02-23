@@ -25,37 +25,42 @@
       height: 100%;
       object-fit: cover;
     }
-    /* Navigation styling */
+    /* Fixed navigation bar placed outside the header */
     nav {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
       background: rgba(0, 0, 0, 0.8);
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
       padding: 0;
     }
     nav ul {
       list-style: none;
       margin: 0;
       padding: 0;
-      display: flex; /* Always keep nav items in a row */
+      display: flex;
+      white-space: nowrap; /* Prevent wrapping */
+      overflow-x: auto;    /* Allow horizontal scrolling if needed */
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+    /* Optional: Hide scrollbar on WebKit browsers */
+    nav::-webkit-scrollbar {
+      display: none;
     }
     nav ul li {
       position: relative;
     }
     nav ul li a {
+      display: block;
       padding: 10px 20px;
       text-decoration: none;
       font-size: 18px;
       color: white;
-      background-color: transparent;
       border-radius: 5px 5px 0 0;
       border: 1px solid transparent;
       border-bottom: none;
       transition: background-color 0.3s, color 0.3s;
-      display: block;
     }
     nav ul li a:hover {
       background-color: #555;
@@ -89,9 +94,11 @@
     nav ul li:hover .dropdown-menu {
       display: block;
     }
+    /* Main content */
     main {
       flex: 1;
       padding: 20px;
+      margin-top: 60px; /* Give space for the fixed nav */
     }
     footer {
       background-color: #333;
@@ -101,14 +108,6 @@
     }
     /* Responsive adjustments */
     @media screen and (max-width: 768px) {
-      header {
-        height: 40vh; /* Reduced header height on tablets */
-      }
-      nav {
-        top: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
       nav ul li a {
         font-size: 16px;
         padding: 8px 12px;
@@ -128,25 +127,25 @@
       <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <!-- Global Navigation -->
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about_me.html">About</a></li>
-        <li>
-          <a href="projects.html" class="active">Projects</a>
-          <ul class="dropdown-menu">
-            <li><a href="LifeOnceAgain.html">LifeOnceAgain</a></li>
-            <li><a href="LotteryNumberGenerator.html">LotteryNumberGenerator</a></li>
-            <li><a href="Labor_Tracker_Pro.html">Labor_Tracker_Pro</a></li>
-            <li><a href="BlockChainPaymentSystem.html">BlockChainPaymentSystem</a></li>
-            <li><a href="3D-Projects.html">3D-Projects</a></li>
-          </ul>
-        </li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
   </header>
+  <!-- Fixed Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about_me.html">About</a></li>
+      <li>
+        <a href="projects.html" class="active">Projects</a>
+        <ul class="dropdown-menu">
+          <li><a href="LifeOnceAgain.html">LifeOnceAgain</a></li>
+          <li><a href="LotteryNumberGenerator.html">LotteryNumberGenerator</a></li>
+          <li><a href="Labor_Tracker_Pro.html">Labor_Tracker_Pro</a></li>
+          <li><a href="BlockChainPaymentSystem.html">BlockChainPaymentSystem</a></li>
+          <li><a href="3D-Projects.html">3D-Projects</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
   <main>
     <h2>Projects</h2>
     <p>Select a project from the dropdown menu above to see more details.</p>
@@ -169,16 +168,17 @@
         });
       };
       setActiveTab();
-       // Disable right-click context menu on the video element (if present)
+      // Disable right-click context menu on the video element (if present)
       const headerVideo = document.getElementById('headerVideo');
-      if (headerVideo) {
+      if(headerVideo) {
         headerVideo.addEventListener('contextmenu', function(e) {
           e.preventDefault();
         });
       }
+
       // Optionally, disable right-click on the overlay as well
       const overlay = document.querySelector('.overlay');
-      if (overlay) {
+      if(overlay) {
         overlay.addEventListener('contextmenu', function(e) {
           e.preventDefault();
         });
