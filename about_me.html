@@ -61,6 +61,22 @@
       flex: 1; /* Allows main content to grow and take up space */
       padding: 20px;
     }
+    /* New container for the introduction section */
+    .intro-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .bio {
+      flex: 0 0 40%; /* Adjust the width as needed */
+    }
+    .bio img {
+      width: 100%;
+      height: auto;
+    }
+    .intro-content {
+      flex: 1;
+    }
     footer {
       background-color: #333;
       color: white;
@@ -69,7 +85,6 @@
     }
   </style>
 </head>
-
 <body>
   <header>
     <video autoplay muted loop playsinline>
@@ -83,24 +98,39 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-
- <main>
-    <section>
-      <h2>Introduction</h2>
-      <p>As Scott Barry Kaufmann once said, <quote>"Every person on this earth is full of great possibilities that can be realized through imagination, effort, and perseverance."</quote></p>
+  <main>
+    <section class="introduction">
+      <div class="intro-container">
+        <!-- Left column: Bio picture -->
+        <div class="bio">
+          <img src="images/bio-pic.jpg" alt="bio-pic">
+        </div>
+        <!-- Right column: Introduction text, quote, and articles -->
+        <div class="intro-content">
+          <h2>Introduction</h2>
+          <p>As Scott Barry Kaufmann once said, <q>"Every person on this earth is full of great possibilities that can be realized through imagination, effort, and perseverance."</q></p>
+          <article>
+            <h1>About-Me:</h1>
+            <p>Growing up I became fascinated with computers and developed a passion for learning new technology. Seeing computers and working with them in my elementary school was a different experience.</p>
+            <p>I started by learning the basics of a computer – observing and even attempting to take one apart. From there, I began to learn coding.</p>
+            <p>With my understanding of coding, I built this website as a portfolio to showcase all the accomplishments I’ve achieved in my self-learning journey and career.</p>
+          </article>
+          <article>
+            <h1>Accomplishments:</h1>
+            <p>Obtained A.A.S (Applied Associate of Science) in Computer Information Systems</p>
+            <p>Obtained B.S (Bachelors of Science) in Computer Science</p>
+          </article>
+          <article>
+            <h1>Certificates:</h1>
+            <!-- Add certificate details here -->
+          </article>
+        </div>
+      </div>
     </section>
-
-   <section>
-     <aside>
-       <img src="" alt="bio-pic" style="width:500px;height:600px; align="left">
-     </aside>
-   </section>
   </main>
-
   <footer>
     <p>&copy; 2024 ahesh001. All rights reserved.</p>
   </footer>
-
   <script>
     // Function to set the active tab when a link is clicked
     document.addEventListener('DOMContentLoaded', () => {
