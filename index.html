@@ -35,17 +35,12 @@
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       padding: 0;
-      overflow-x: auto;
     }
     nav ul {
       list-style: none;
       margin: 0;
       padding: 0;
       display: flex; /* Always keep nav items in a row */
-      white-space: nowrap;
-    }
-    nav::-webkit-scrollbar {
-      display: none; /* Optionally hide the scrollbar */
     }
     nav ul li {
       position: relative;
@@ -154,23 +149,11 @@
       <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
     </div>
     <nav>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about_me.html">About</a></li>
-    <li>
+      <a href="index.html" class="active">Home</a>
+      <a href="about_me.html">About</a>
       <a href="projects.html">Projects</a>
-      <ul class="dropdown-menu">
-        <li><a href="LifeOnceAgain.html">LifeOnceAgain</a></li>
-        <li><a href="LotteryNumberGenerator.html">LotteryNumberGenerator</a></li>
-        <li><a href="Labor_Tracker_Pro.html">Labor_Tracker_Pro</a></li>
-        <li><a href="BlockChainPaymentSystem.html">BlockChainPaymentSystem</a></li>
-        <li><a href="3D-Projects.html">3D-Projects</a></li>
-      </ul>
-    </li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
-
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
   <main>
     <section>
@@ -195,6 +178,21 @@
           }
         });
       };
+       // Disable right-click context menu on the video element (if present)
+      const headerVideo = document.getElementById('headerVideo');
+      if(headerVideo) {
+        headerVideo.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+        });
+      }
+
+      // Optionally, disable right-click on the overlay as well
+      const overlay = document.querySelector('.overlay');
+      if(overlay) {
+        overlay.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+        });
+      }
       setActiveTab();
       // Add click event listeners to update active state on click
       navLinks.forEach(link => {
