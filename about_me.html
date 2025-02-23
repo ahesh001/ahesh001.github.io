@@ -83,6 +83,35 @@
       text-align: center;
       padding: 20px;
     }
+
+        /* Responsive adjustments */
+    @media screen and (max-width: 768px) {
+      header {
+        height: 40vh; /* Reduce header height on tablets */
+      }
+      nav {
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      nav ul {
+        flex-direction: column; /* Stack nav items vertically */
+      }
+      nav ul li {
+        width: 100%;
+        text-align: center;
+      }
+      .dropdown-menu {
+        position: static; /* Allow dropdown items to stack normally */
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      nav ul li a {
+        font-size: 16px;
+        padding: 8px 12px;
+      }
+    }
   </style>
 </head>
 <body>
