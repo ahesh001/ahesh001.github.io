@@ -28,7 +28,7 @@
     /* Navigation styling */
     nav {
       position: absolute;
-      top: 20px; /* Adjust to your preference */
+      top: 20px;
       left: 50%;
       transform: translateX(-50%);
       background: rgba(0, 0, 0, 0.8);
@@ -120,18 +120,6 @@
         padding: 6px 10px;
       }
     }
-    /* New horizontal scroll adjustments applied only in landscape orientation */
-    @media screen and (orientation: landscape) {
-      nav {
-        overflow-x: auto;
-      }
-      nav ul {
-        white-space: nowrap;
-      }
-      nav::-webkit-scrollbar {
-        display: none;
-      }
-    }
   </style>
 </head>
 <body>
@@ -183,14 +171,14 @@
       setActiveTab();
        // Disable right-click context menu on the video element (if present)
       const headerVideo = document.getElementById('headerVideo');
-      if(headerVideo) {
+      if (headerVideo) {
         headerVideo.addEventListener('contextmenu', function(e) {
           e.preventDefault();
         });
       }
       // Optionally, disable right-click on the overlay as well
       const overlay = document.querySelector('.overlay');
-      if(overlay) {
+      if (overlay) {
         overlay.addEventListener('contextmenu', function(e) {
           e.preventDefault();
         });
