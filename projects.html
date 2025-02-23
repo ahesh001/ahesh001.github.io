@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <style>
+    /* Basic layout */
     body, html {
       margin: 0;
       padding: 0;
@@ -16,7 +17,7 @@
     header {
       position: relative;
       width: 100%;
-      height: 60vh; /* Default header height for larger screens */
+      height: 60vh; /* Default header height */
       overflow: hidden;
     }
     video {
@@ -27,10 +28,10 @@
     /* Navigation styling */
     nav {
       position: absolute;
-      top: 20px; /* Adjust as needed */
+      top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+      background: rgba(0, 0, 0, 0.8);
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       padding: 0;
@@ -39,7 +40,7 @@
       list-style: none;
       margin: 0;
       padding: 0;
-      display: flex;
+      display: flex; /* Items arranged in a row */
     }
     nav ul li {
       position: relative;
@@ -90,7 +91,7 @@
       display: block;
     }
     main {
-      flex: 1; /* Main content takes up remaining space */
+      flex: 1;
       padding: 20px;
     }
     footer {
@@ -100,32 +101,29 @@
       padding: 20px;
     }
 
-    /* Responsive adjustments */
+/* Responsive adjustments */
     @media screen and (max-width: 768px) {
       header {
-        height: 40vh; /* Reduce header height on tablets */
+        height: 40vh; /* Reduced header height on tablets */
       }
+      /* Keep navigation horizontal on all devices */
       nav {
         top: 10px;
         left: 50%;
         transform: translateX(-50%);
       }
       nav ul {
-        flex-direction: column; /* Stack nav items vertically */
+        flex-direction: row;
       }
-      nav ul li {
-        width: 100%;
-        text-align: center;
-      }
-      .dropdown-menu {
-        position: static; /* Allow dropdown items to stack normally */
-      }
-    }
-    
-    @media screen and (max-width: 480px) {
       nav ul li a {
         font-size: 16px;
         padding: 8px 12px;
+      }
+    }
+    @media screen and (max-width: 480px) {
+      nav ul li a {
+        font-size: 14px;
+        padding: 6px 10px;
       }
     }
   </style>
