@@ -28,7 +28,7 @@
     /* Navigation styling */
     nav {
       position: absolute;
-      top: 20px;
+      top: 20px; /* Adjust to your preference */
       left: 50%;
       transform: translateX(-50%);
       background: rgba(0, 0, 0, 0.8);
@@ -120,6 +120,18 @@
         padding: 6px 10px;
       }
     }
+    /* New horizontal scroll adjustments applied only in landscape orientation */
+    @media screen and (orientation: landscape) {
+      nav {
+        overflow-x: auto;
+      }
+      nav ul {
+        white-space: nowrap;
+      }
+      nav::-webkit-scrollbar {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -194,4 +206,3 @@
   </script>
 </body>
 </html>
-
