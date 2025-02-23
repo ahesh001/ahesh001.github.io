@@ -106,20 +106,15 @@
       text-align: center;
       padding: 20px;
     }
-
-/* Responsive adjustments */
+    /* Responsive adjustments */
     @media screen and (max-width: 768px) {
       header {
         height: 40vh; /* Reduced header height on tablets */
       }
-      /* Keep navigation horizontal on all devices */
       nav {
         top: 10px;
         left: 50%;
         transform: translateX(-50%);
-      }
-      nav ul {
-        flex-direction: row;
       }
       nav ul li a {
         font-size: 16px;
@@ -136,13 +131,11 @@
 </head>
 <body>
   <header>
-    <div class="video-container" style="position: relative; width: 100%; height: 100%;">
-  <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+    <video autoplay muted loop playsinline>
       <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
-</div>
+      Your browser does not support the video tag.
+    </video>
+    <!-- Global Navigation -->
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -162,7 +155,6 @@
     </nav>
   </header>
   <main>
-    <!-- Main content for Projects page -->
     <h2>Projects</h2>
     <p>Select a project from the dropdown menu above to see more details.</p>
   </main>
@@ -173,7 +165,6 @@
     // Set active tab based on the current URL
     document.addEventListener('DOMContentLoaded', () => {
       const navLinks = document.querySelectorAll('nav ul li a');
-
       const setActiveTab = () => {
         const currentPath = window.location.pathname.split('/').pop();
         navLinks.forEach(link => {
@@ -184,20 +175,21 @@
           }
         });
       };
-
       setActiveTab();
-
-      // Disable right-click context menu on the video element
+       // Disable right-click context menu on the video element (if present)
       const headerVideo = document.getElementById('headerVideo');
-      headerVideo.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
-
-        // Optionally, disable right-click on the overlay as well
-        document.querySelector('.overlay').addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-      });
-
+      if(headerVideo) {
+        headerVideo.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+        });
+      }
+      // Optionally, disable right-click on the overlay as well
+      const overlay = document.querySelector('.overlay');
+      if(overlay) {
+        overlay.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+        });
+      }
       // Update active state on click
       navLinks.forEach(link => {
         link.addEventListener('click', () => {
