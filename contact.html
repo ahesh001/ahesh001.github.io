@@ -57,8 +57,8 @@
       border-color: #333;
       border-bottom: 2px solid #333; /* Highlight active tab */
     }
-     main {
-      flex: 1; /* Allows main content to grow and take up space */
+    main {
+      flex: 10; /* Main content grows */
       padding: 20px;
     }
     body {
@@ -137,11 +137,11 @@
       header {
         height: 40vh; /* Reduced header height on tablets */
       }
+      /* Remove vertical stacking on nav; keep items in a row */
       nav {
         top: 10px;
         left: 50%;
         transform: translateX(-50%);
-        flex-direction: column; /* Stack nav items vertically */
       }
       nav a {
         font-size: 16px;
@@ -159,7 +159,8 @@
 </head>
 
 <body>
-  <div class="video-container" style="position: relative; width: 100%; height: 100%;">
+  <header>
+    <div class="video-container" style="position: relative; width: 100%; height: 100%;">
   <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
       <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -263,7 +264,7 @@
       // Initial check on page load
       setActiveTab();
 
-       // Disable right-click context menu on the video element
+      // Disable right-click context menu on the video element
       const headerVideo = document.getElementById('headerVideo');
       headerVideo.addEventListener('contextmenu', function(e) {
       e.preventDefault();
@@ -285,3 +286,4 @@
   </script>
 </body>
 </html>
+
