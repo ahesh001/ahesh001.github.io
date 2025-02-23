@@ -152,12 +152,6 @@
       // Initial check on page load
       setActiveTab();
 
-      // Disable right-click context menu on the video element
-      const headerVideo = document.getElementById('headerVideo');
-      headerVideo.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
-
       // Add click event listeners to each link
       navLinks.forEach(link => {
         link.addEventListener('click', () => {
