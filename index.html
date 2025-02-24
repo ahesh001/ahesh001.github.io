@@ -25,7 +25,7 @@
       height: 100%;
       object-fit: cover;
     }
-    /* Fixed navigation bar */
+    /* Fixed Navigation Bar */
     nav {
       position: fixed;
       top: 0;
@@ -118,7 +118,8 @@
 </head>
 <body>
   <header>
-    <video autoplay muted loop playsinline>
+    <!-- Added id="headerVideo" here -->
+    <video id="headerVideo" autoplay muted loop playsinline>
       <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -149,8 +150,7 @@
   <footer>
     <p>&copy; 2025 ahesh001. All rights reserved.</p>
   </footer>
-    <script>
-    // Set active tab based on the current URL
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
       const navLinks = document.querySelectorAll('nav ul li a');
       const setActiveTab = () => {
@@ -164,20 +164,15 @@
         });
       };
       setActiveTab();
-       // Disable right-click context menu on the video element (if present)
+      
+      // Disable right-click context menu on the video element
       const headerVideo = document.getElementById('headerVideo');
       if (headerVideo) {
         headerVideo.addEventListener('contextmenu', function(e) {
           e.preventDefault();
         });
       }
-      // Optionally, disable right-click on the overlay as well
-      const overlay = document.querySelector('.overlay');
-      if (overlay) {
-        overlay.addEventListener('contextmenu', function(e) {
-          e.preventDefault();
-        });
-      }
+      
       // Update active state on click
       navLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -185,33 +180,30 @@
           link.classList.add('active');
         });
       });
-    });
-      // Surprise Script
-    document.addEventListener('DOMContentLoaded', () => {
+      
+      // Surprise Button Script
       const surpriseBtn = document.getElementById('surpriseBtn');
       surpriseBtn.addEventListener('click', () => {
-        // Array of surprise actions
         const surprises = [
-          // Surprise: Display an alert message
+          // Alert message
           () => alert("Surprise! You've discovered a secret message!"),
-          // Surprise: Change the background color of the body
+          // Change background color randomly
           () => document.body.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16),
-          // Surprise: Redirect to a random page
+          // Redirect to a random page
           () => {
             const pages = ["projects.html", "about_me.html", "contact.html"];
             const randomPage = pages[Math.floor(Math.random() * pages.length)];
             window.location.href = randomPage;
           },
-          // Surprise: Append a surprise image to the main content
+          // Append a surprise image to main content
           () => {
             const img = document.createElement('img');
-            img.src = "images/surprise.jpg"; // Ensure this image exists in your images folder
+            img.src = "images/surprise.jpg"; // Make sure this image exists
             img.alt = "Surprise!";
             img.style.maxWidth = "100%";
             document.querySelector('main').appendChild(img);
           }
         ];
-        // Choose and execute one random surprise action
         const randomIndex = Math.floor(Math.random() * surprises.length);
         surprises[randomIndex]();
       });
