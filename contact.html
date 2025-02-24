@@ -14,10 +14,6 @@
       display: flex;
       flex-direction: column;
     }
-    /* Apply brightness filter when dark mode is active */
-    body.dark-mode {
-      filter: brightness(0.8);
-    }
     header {
       position: relative;
       width: 100%;
@@ -29,7 +25,7 @@
       height: 100%;
       object-fit: cover;
     }
-    /* Fixed navigation bar over the video header */
+    /* Fixed navigation bar appears over the video */
     nav {
       position: fixed;
       top: 0;
@@ -45,7 +41,6 @@
       padding: 0;
       display: flex;
       justify-content: center; /* Center nav items */
-      align-items: center;
     }
     nav ul li {
       position: relative;
@@ -93,17 +88,6 @@
     }
     nav ul li:hover .dropdown-menu {
       display: block;
-    }
-    /* Theme toggle button styling */
-    #theme-toggle-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 10px 20px;
-    }
-    #theme-toggle-btn svg {
-      vertical-align: middle;
-      fill: white;
     }
     /* Main content with margin-top to avoid overlap with fixed nav */
     main {
@@ -158,10 +142,9 @@
     /* Responsive adjustments */
     @media screen and (max-width: 768px) {
       header {
-        height: 40vh;
+        height: 40vh; /* Reduced header height on tablets */
       }
-      nav ul li a,
-      #theme-toggle-btn {
+      nav ul li a {
         font-size: 16px;
         padding: 8px 12px;
       }
@@ -170,8 +153,7 @@
       }
     }
     @media screen and (max-width: 480px) {
-      nav ul li a,
-      #theme-toggle-btn {
+      nav ul li a {
         font-size: 14px;
         padding: 6px 10px;
       }
@@ -206,10 +188,6 @@
           </ul>
         </li>
         <li><a href="contact.html" class="active">Contact</a></li>
-        <!-- Theme Toggle Button -->
-        <li>
-          <button id="theme-toggle-btn" title="Toggle Dark/Light Mode"></button>
-        </li>
       </ul>
     </nav>
   </header>
@@ -223,16 +201,12 @@
         ?>
         <label for="fname">First Name</label>
         <input type="text" id="fname" name="fname" placeholder="First Name" required>
-
         <label for="lname">Last Name</label>
         <input type="text" id="lname" name="lname" placeholder="Last Name" required>
-        
         <label for="email">Email</label>
         <input type="email" id="email" name="email" placeholder="something@email.com" required>
-        
         <label for="subject">Subject</label>
         <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px" required></textarea>
-
         <input type="submit" value="Send">
       </form>
     </div>
@@ -240,37 +214,9 @@
   <footer>
     <p>&copy; 2025 ahesh001. All rights reserved.</p>
   </footer>
-  <!-- Validation Library -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
   <script>
-    // Form validation
-    const constraints = {
-      fname: { presence: { allowEmpty: false } },
-      lname: { presence: { allowEmpty: false } },
-      email: { presence: { allowEmpty: false }, email: true },
-      subject: { presence: { allowEmpty: false } }
-    };
-
-    const form = document.getElementById('contact-form');
-    form.addEventListener('submit', function(event) {
-      const formValues = {
-        fname: form.elements.fname.value,
-        lname: form.elements.lname.value,
-        email: form.elements.email.value,
-        subject: form.elements.subject.value
-      };
-      const errors = validate(formValues, constraints);
-      if (errors) {
-        event.preventDefault();
-        const errorMessage = Object.values(errors)
-          .map(fieldValues => fieldValues.join(', '))
-          .join("\n");
-        alert(errorMessage);
-      }
-    }, false);
-  </script>
-  <script>
-    // Set active nav link
+    // Form validation and navigation active state
     document.addEventListener('DOMContentLoaded', () => {
       const navLinks = document.querySelectorAll('nav a');
       const setActiveTab = () => {
@@ -290,13 +236,6 @@
           link.classList.add('active');
         });
       });
-      // Disable right-click context menu on the video element (if present)
-      const headerVideo = document.getElementById('headerVideo');
-      if (headerVideo) {
-        headerVideo.addEventListener('contextmenu', function(e) {
-          e.preventDefault();
-        });
-      }
       // Disable right-click on video and overlay (if present)
       const headerVideo = document.getElementById('headerVideo');
       if (headerVideo) {
@@ -306,43 +245,6 @@
       if (overlay) {
         overlay.addEventListener('contextmenu', e => e.preventDefault());
       }
-    });
-  </script>
-  <script>
-    // Theme toggle functionality
-    const themeToggleBtn = document.getElementById('theme-toggle-btn');
-    // Define icons (using inline SVG)
-    const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-sun" viewBox="0 0 16 16">
-      <path d="M8 4.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zM8 1a.5.5 0 0 1 .5.5V3a.5.5 0 0 1-1 0V1.5A.5.5 0 0 1 8 1zm0 12a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-1 0V13.5a.5.5 0 0 1 .5-.5zm7-5a.5.5 0 0 1-.5.5H13a.5.5 0 0 1 0-1h1.5a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5H1a.5.5 0 0 1 0-1h1.5A.5.5 0 0 1 3 8zm9.657-4.657a.5.5 0 0 1 0 .707L11.707 5.5a.5.5 0 1 1-.707-.707l1.95-1.95a.5.5 0 0 1 .707 0zm-8.485 8.485a.5.5 0 0 1 0 .707L3.293 14.5a.5.5 0 0 1-.707-.707l1.95-1.95a.5.5 0 0 1 .707 0zm8.485 0a.5.5 0 0 1 .707 0l1.95 1.95a.5.5 0 1 1-.707.707l-1.95-1.95a.5.5 0 0 1 0-.707zm-8.485-8.485a.5.5 0 0 1 .707 0l1.95 1.95a.5.5 0 1 1-.707.707L3.293 3.5a.5.5 0 0 1 0-.707z"/>
-    </svg>`;
-    const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
-      <path d="M6 0a6 6 0 0 0 0 12c3.314 0 6-2.686 6-6 0-2.842-1.959-5.228-4.5-5.833V0z"/>
-    </svg>`;
-
-    // Function to set the theme
-    function setTheme(theme) {
-      if (theme === 'dark') {
-        document.body.classList.add('dark-mode');
-        themeToggleBtn.innerHTML = sunIcon;
-      } else {
-        document.body.classList.remove('dark-mode');
-        themeToggleBtn.innerHTML = moonIcon;
-      }
-      localStorage.setItem('theme', theme);
-    }
-
-    // On load, check stored preference or system preference
-    document.addEventListener('DOMContentLoaded', () => {
-      let theme = localStorage.getItem('theme');
-      if (!theme) {
-        theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      }
-      setTheme(theme);
-      // Toggle theme on button click
-      themeToggleBtn.addEventListener('click', () => {
-        theme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
-        setTheme(theme);
-      });
     });
   </script>
 </body>
