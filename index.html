@@ -25,7 +25,7 @@
       height: 100%;
       object-fit: cover;
     }
-    /* Fixed navigation bar appears over the video */
+    /* Fixed navigation bar */
     nav {
       position: fixed;
       top: 0;
@@ -40,7 +40,7 @@
       margin: 0;
       padding: 0;
       display: flex;
-      justify-content: center; /* Center the nav items */
+      justify-content: center;
     }
     nav ul li {
       position: relative;
@@ -51,31 +51,19 @@
       text-decoration: none;
       font-size: 18px;
       color: white;
-      background-color: transparent;
-      border-radius: 5px 5px 0 0;
-      border: 1px solid transparent;
-      border-bottom: none;
-      transition: background-color 0.3s, color 0.3s;
+      transition: background-color 0.3s;
     }
-    nav ul li a:hover {
-      background-color: #555;
-      color: white;
-    }
-    nav ul li a.active {
+    nav ul li a:hover, nav ul li a.active {
       background-color: #333;
-      color: white;
-      border-color: #333;
-      border-bottom: 2px solid #333;
     }
     /* Dropdown menu styling */
     .dropdown-menu {
       display: none;
       position: absolute;
-      top: 100%; /* Position dropdown below parent */
+      top: 100%;
       left: 0;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0,0,0,0.8);
       border-radius: 0 0 10px 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       padding: 0;
       margin: 0;
       list-style: none;
@@ -89,11 +77,26 @@
     nav ul li:hover .dropdown-menu {
       display: block;
     }
-    /* Main content with margin-top to avoid overlap with fixed nav */
+    /* Main content */
     main {
       flex: 1;
       padding: 20px;
-      margin-top: 60px; /* Adjust this value to match the nav height */
+      margin-top: 60px; /* Space for fixed nav */
+      text-align: center;
+    }
+    /* Surprise button styling */
+    .surprise-button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #04AA6D;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .surprise-button:hover {
+      background-color: #45a049;
     }
     footer {
       background-color: #333;
@@ -103,30 +106,24 @@
     }
     /* Responsive adjustments */
     @media screen and (max-width: 768px) {
-      nav ul li a {
-        font-size: 16px;
-        padding: 8px 12px;
-      }
+      header { height: 40vh; }
+      nav ul li a { font-size: 16px; padding: 8px 12px; }
+      .surprise-button { font-size: 16px; padding: 12px 24px; }
     }
     @media screen and (max-width: 480px) {
-      nav ul li a {
-        font-size: 14px;
-        padding: 6px 10px;
-      }
+      nav ul li a { font-size: 14px; padding: 6px 10px; }
+      .surprise-button { font-size: 14px; padding: 10px 20px; }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="video-container" style="position: relative; width: 100%; height: 100%;">
-      <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
-        <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
-    </div>
+    <video autoplay muted loop playsinline>
+      <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </header>
-  <!-- Fixed Navigation Bar Over the Video -->
+  <!-- Fixed Navigation Bar -->
   <nav>
     <ul>
       <li><a href="index.html" class="active">Home</a></li>
@@ -145,18 +142,17 @@
     </ul>
   </nav>
   <main>
-    <section>
-      <!-- Your main content goes here -->
-    </section>
+    <h1>Welcome to my Portfolio</h1>
+    <p>Enjoy your visit and have a surprise!</p>
+    <button class="surprise-button" id="surpriseBtn">Surprise Me!</button>
   </main>
   <footer>
     <p>&copy; 2025 ahesh001. All rights reserved.</p>
   </footer>
-  <script>
+    <script>
     // Set active tab based on the current URL
     document.addEventListener('DOMContentLoaded', () => {
-      const navLinks = document.querySelectorAll('nav a');
-      // Update active state based on current URL
+      const navLinks = document.querySelectorAll('nav ul li a');
       const setActiveTab = () => {
         const currentPath = window.location.pathname.split('/').pop();
         navLinks.forEach(link => {
@@ -168,26 +164,57 @@
         });
       };
       setActiveTab();
-      // Disable right-click context menu on the video element (if present)
+       // Disable right-click context menu on the video element (if present)
       const headerVideo = document.getElementById('headerVideo');
-      if(headerVideo) {
+      if (headerVideo) {
         headerVideo.addEventListener('contextmenu', function(e) {
           e.preventDefault();
         });
       }
       // Optionally, disable right-click on the overlay as well
       const overlay = document.querySelector('.overlay');
-      if(overlay) {
+      if (overlay) {
         overlay.addEventListener('contextmenu', function(e) {
           e.preventDefault();
         });
       }
-      // Add click event listeners to update active state on click
+      // Update active state on click
       navLinks.forEach(link => {
         link.addEventListener('click', () => {
           navLinks.forEach(l => l.classList.remove('active'));
           link.classList.add('active');
         });
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const surpriseBtn = document.getElementById('surpriseBtn');
+      surpriseBtn.addEventListener('click', () => {
+        // Array of surprise actions
+        const surprises = [
+          // Surprise: Display an alert message
+          () => alert("Surprise! You've discovered a secret message!"),
+          // Surprise: Change the background color of the body
+          () => document.body.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16),
+          // Surprise: Redirect to a random page
+          () => {
+            const pages = ["projects.html", "about_me.html", "contact.html"];
+            const randomPage = pages[Math.floor(Math.random() * pages.length)];
+            window.location.href = randomPage;
+          },
+          // Surprise: Append a surprise image to the main content
+          () => {
+            const img = document.createElement('img');
+            img.src = "images/surprise.jpg"; // Ensure this image exists in your images folder
+            img.alt = "Surprise!";
+            img.style.maxWidth = "100%";
+            document.querySelector('main').appendChild(img);
+          }
+        ];
+        // Choose and execute one random surprise action
+        const randomIndex = Math.floor(Math.random() * surprises.length);
+        surprises[randomIndex]();
       });
     });
   </script>
