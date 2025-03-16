@@ -96,6 +96,7 @@
       padding: 20px;
       margin-top: 60px;
     }
+    more {display: none;}
     footer {
       background-color: #333;
       color: white;
@@ -145,6 +146,30 @@
   <main>
     <h2>Projects</h2>
     <p>Select a project from the dropdown menu above to see more details.</p>
+
+    <div class="container">
+      <h3>Title: LifeOnceAgain</h3>
+      <p>Description:/n We've all experienced a loss in life. Wether it be a close friend or family member. Either way that loss allows you to grieve and reflect on the life that important person had once lived.<span id="dots">...</span><span id="more"> What if... there was a way to talk to them again?
+        What if, they had Life Once Again. LifeOnceAgain is a unique one of a kind app that allows you to talk to a deceased loved one again. Using the technology of Artifical Intelligence & Virtual Reality. You'll be able to talk to your loved one again.</span></p>
+      <button onclick="ReadMore()" id="readmore">Read more</button>
+    </div>
+
+    <div class="container">
+      <h3>Title: LotteryNumberGenerator</h3>
+      <p>Description: /n This project is based on generating random numbers according to the Mega Millions rules. <span id="dots">...</span><span id="more">Although this project does a bit more where it also accounts for the impact of 309 million players. To potentially reduce the chance of sharing the jackpot, my code avoids commonly picked numbers (like numbers 1-31, which represent days of the month). </span></p>
+      <button onclick="ReadMore()" id="readmore">Read more</button>
+    </div>
+
+    <div class="container">
+      <h3>Title: Labor_Tracker_Pro</h3>
+      <p>Description: /n The Labor Tracker App is an innovative mobile application designed to streamline labor tracking and job management for businesses and contractors. <span id="dots">...</span><span id="more">This all-in-one system integrates job start times, travel tracking, and total shop hours while leveraging Firebase Cloud for real-time data synchronization and storage. The app also incorporates an API for GPS tracking to enhance location accuracy and efficiency. </span></p>
+      <button onclick="ReadMore()" id="readmore">Read more</button>
+    </div>
+
+    <div class="container">
+      <h3>Title: BlockChainPaymentSystem</h3>
+      <p>Description: /n Description: A repo that is working on a payment system for blockchain to mine cryptocurrency 
+    </div>
   </main>
   <footer>
     <p>&copy; 2025 ahesh001. All rights reserved.</p>
@@ -186,6 +211,23 @@
         });
       });
     });
+
+  //Script function for Read More ... Read Less buttons  
+  function ReadMore() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("readmore");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less";
+    moreText.style.display = "inline";
+  }
+}
   </script>
 </body>
 </html>
