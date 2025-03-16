@@ -96,13 +96,7 @@
       padding: 20px;
       margin-top: 60px;
     }
-    /* Container styling for project details */
-    .container {
-      border: 1px solid #ccc;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-    }
+    more { display: none; }
     footer {
       background-color: #333;
       color: white;
@@ -127,17 +121,17 @@
 <body>
   <header>
     <video id="headerVideo" autoplay muted loop playsinline>
-      <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
+      <source src="/images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </header>
   <!-- Fixed Navigation Bar Over the Video -->
   <nav>
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about_me.html">About</a></li>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/about_me.html">About</a></li>
       <li>
-        <a href="projects.html" class="active">Projects</a>
+        <a href="/projects.html" class="active">Projects</a>
         <ul class="dropdown-menu">
           <li><a href="https://github.com/ahesh001/LifeOnceAgain">LifeOnceAgain</a></li>
           <li><a href="https://github.com/ahesh001/LotteryNumberGenerator">LotteryNumberGenerator</a></li>
@@ -146,30 +140,28 @@
           <li><a href="https://www.tinkercad.com/dashboard/collections/h2JineFcOEY/3d">3D-Projects</a></li>
         </ul>
       </li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="/contact.html">Contact</a></li>
     </ul>
   </nav>
   <main>
-    <h1>Projects</h1>
+    <h2>Projects</h2>
     <p>Select a project from the dropdown menu above to see more details.</p>
 
     <div class="container">
-      <h2>LifeOnceAgain</h2>
-      <p>
-        Description:<br>
-        We've all experienced a loss in life—whether it be a close friend or family member. Either way, that loss allows you to grieve and reflect on the life that important person once lived.
+      <h3>Title: LifeOnceAgain</h3>
+      <p>Description:<br>
+        We've all experienced a loss in life—whether it be a close friend or family member. That loss allows you to grieve and reflect on the life that important person once lived.
         <span class="dots">...</span>
         <span class="more-text" style="display:none;">
-          What if there was a way to talk to them again? What if they had Life Once Again? LifeOnceAgain is a unique, one-of-a-kind app that allows you to talk to a deceased loved one again using Artificial Intelligence & Virtual Reality.
+          What if there was a way to talk to them again? What if they had Life Once Again? LifeOnceAgain is a unique, one-of-a-kind app that allows you to talk to a deceased loved one again using Artificial Intelligence &amp; Virtual Reality.
         </span>
       </p>
       <button class="readmore-btn">Read more</button>
     </div>
 
     <div class="container">
-      <h2>LotteryNumberGenerator</h2>
-      <p>
-        Description:<br>
+      <h3>Title: LotteryNumberGenerator</h3>
+      <p>Description:<br>
         This project is based on generating random numbers according to the Mega Millions rules.
         <span class="dots">...</span>
         <span class="more-text" style="display:none;">
@@ -180,9 +172,8 @@
     </div>
 
     <div class="container">
-      <h2>Labor_Tracker_Pro</h2>
-      <p>
-        Description:<br>
+      <h3>Title: Labor_Tracker_Pro</h3>
+      <p>Description:<br>
         The Labor Tracker App is an innovative mobile application designed to streamline labor tracking and job management for businesses and contractors.
         <span class="dots">...</span>
         <span class="more-text" style="display:none;">
@@ -193,10 +184,9 @@
     </div>
 
     <div class="container">
-      <h2>BlockChainPaymentSystem</h2>
-      <p>
-        Description:<br>
-        A repo that is working on a payment system for blockchain to mine cryptocurrency.
+      <h3>Title: BlockChainPaymentSystem</h3>
+      <p>Description:<br>
+        A repo working on a payment system for blockchain to mine cryptocurrency.
       </p>
     </div>
   </main>
@@ -210,7 +200,7 @@
       const setActiveTab = () => {
         const currentPath = window.location.pathname.split('/').pop();
         navLinks.forEach(link => {
-          if (link.getAttribute('href') === currentPath) {
+          if (link.getAttribute('href').replace(/^\/+/,"") === currentPath || (currentPath === "" && link.getAttribute('href').includes("index.html"))) {
             link.classList.add('active');
           } else {
             link.classList.remove('active');
@@ -219,13 +209,15 @@
       };
       setActiveTab();
       
-      // Disable right-click on video and overlay (if present)
+      // Disable right-click context menu on the video element
       const headerVideo = document.getElementById('headerVideo');
       if (headerVideo) {
         headerVideo.addEventListener('contextmenu', function(e) {
           e.preventDefault();
         });
       }
+      
+      // Disable right-click on the overlay (if present)
       const overlay = document.querySelector('.overlay');
       if (overlay) {
         overlay.addEventListener('contextmenu', function(e) {
