@@ -41,7 +41,7 @@
       margin: 0;
       padding: 0;
       display: flex;
-      justify-content: center; /* Center nav items */
+      justify-content: center; /* Center the nav items */
     }
     nav ul li {
       position: relative;
@@ -76,7 +76,7 @@
       left: 0;
       background: rgba(0, 0, 0, 0.8);
       border-radius: 0 0 10px 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       padding: 0;
       margin: 0;
       list-style: none;
@@ -90,11 +90,11 @@
     nav ul li:hover .dropdown-menu {
       display: block;
     }
-    /* Main content with margin-top to avoid overlap with fixed nav */
+    /* Main content with top margin to avoid overlap with fixed nav */
     main {
       flex: 1;
       padding: 20px;
-      margin-top: 60px; /* Adjust to match nav height */
+      margin-top: 60px; /* Adjust if your nav height changes */
     }
     /* Contact form container */
     .container {
@@ -167,7 +167,7 @@
 <body>
   <header>
     <div class="video-container" style="position: relative; width: 100%; height: 100%;">
-      <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+      <video id="headerVideo" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
         <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -179,7 +179,8 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="about_me.html">About</a></li>
         <li>
-          <a href="projects.html">Projects</a>
+          <!-- Projects link now includes an onclick to force navigation -->
+          <a href="projects.html" onclick="window.location.href=this.href;">Projects</a>
           <ul class="dropdown-menu">
             <li><a href="LifeOnceAgain.html">LifeOnceAgain</a></li>
             <li><a href="LotteryNumberGenerator.html">LotteryNumberGenerator</a></li>
@@ -217,7 +218,6 @@
   </footer>
   <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
   <script>
-    // Form validation and navigation active state
     document.addEventListener('DOMContentLoaded', () => {
       const navLinks = document.querySelectorAll('nav a');
       const setActiveTab = () => {
@@ -231,21 +231,30 @@
         });
       };
       setActiveTab();
+      
+      // Disable right-click on the video element
+      const headerVideo = document.getElementById('headerVideo');
+      if (headerVideo) {
+        headerVideo.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+        });
+      }
+      
+      // Optionally, disable right-click on the overlay as well
+      const overlay = document.querySelector('.overlay');
+      if (overlay) {
+        overlay.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+        });
+      }
+      
+      // Update active state on click
       navLinks.forEach(link => {
         link.addEventListener('click', () => {
           navLinks.forEach(l => l.classList.remove('active'));
           link.classList.add('active');
         });
       });
-      // Disable right-click on video and overlay (if present)
-      const headerVideo = document.getElementById('headerVideo');
-      if (headerVideo) {
-        headerVideo.addEventListener('contextmenu', e => e.preventDefault());
-      }
-      const overlay = document.querySelector('.overlay');
-      if (overlay) {
-        overlay.addEventListener('contextmenu', e => e.preventDefault());
-      }
     });
   </script>
 </body>
