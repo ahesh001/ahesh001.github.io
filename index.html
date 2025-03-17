@@ -52,19 +52,31 @@
       text-decoration: none;
       font-size: 18px;
       color: white;
-      transition: background-color 0.3s;
+      background-color: transparent;
+      border-radius: 5px 5px 0 0;
+      border: 1px solid transparent;
+      border-bottom: none;
+      transition: background-color 0.3s, color 0.3s;
     }
-    nav ul li a:hover, nav ul li a.active {
+    nav ul li a:hover {
+      background-color: #555;
+      color: white;
+    }
+    nav ul li a.active {
       background-color: #333;
+      color: white;
+      border-color: #333;
+      border-bottom: 2px solid #333;
     }
     /* Dropdown menu styling */
     .dropdown-menu {
       display: none;
       position: absolute;
-      top: 100%;
+      top: 100%; /* Position dropdown below parent */
       left: 0;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0, 0, 0, 0.8);
       border-radius: 0 0 10px 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       padding: 0;
       margin: 0;
       list-style: none;
@@ -78,11 +90,11 @@
     nav ul li:hover .dropdown-menu {
       display: block;
     }
-    /* Main content */
+    /* Main content with top margin to avoid overlap with fixed nav */
     main {
       flex: 1;
       padding: 20px;
-      margin-top: 60px; /* Space for fixed nav */
+      margin-top: 60px;
       text-align: center;
     }
     /* Surprise button styling */
@@ -119,19 +131,22 @@
 </head>
 <body>
   <header>
-    <!-- Added id="headerVideo" here -->
-    <video id="headerVideo" autoplay muted loop playsinline>
-      <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <div class="video-container" style="position: relative; width: 100%; height: 100%;">
+      <video id="headerVideo" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+        <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+    </div>
   </header>
   <!-- Fixed Navigation Bar -->
   <nav>
     <ul>
-      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="index.html">Home</a></li>
       <li><a href="about_me.html">About</a></li>
       <li>
-        <a href="projects.html">Projects</a>
+        <!-- The Projects link includes an onclick to force immediate navigation -->
+        <a href="projects.html" onclick="window.location.href=this.href;">Projects</a>
         <ul class="dropdown-menu">
           <li><a href="LifeOnceAgain.html">LifeOnceAgain</a></li>
           <li><a href="LotteryNumberGenerator.html">LotteryNumberGenerator</a></li>
@@ -166,7 +181,7 @@
       };
       setActiveTab();
       
-      // Disable right-click context menu on the video element
+      // Disable right-click on the video element
       const headerVideo = document.getElementById('headerVideo');
       if (headerVideo) {
         headerVideo.addEventListener('contextmenu', function(e) {
@@ -189,7 +204,7 @@
           // Alert message
           () => alert("Surprise! You've discovered a secret message!"),
           // Change background color randomly
-          () => document.body.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16),
+          () => document.body.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16),
           // Redirect to a random page
           () => {
             const pages = ["projects.html", "about_me.html", "contact.html"];
