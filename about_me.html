@@ -41,7 +41,7 @@
       margin: 0;
       padding: 0;
       display: flex;
-      justify-content: center; /* Center nav items */
+      justify-content: center; /* Center the nav items */
     }
     nav ul li {
       position: relative;
@@ -94,7 +94,7 @@
     main {
       flex: 1;
       padding: 20px;
-      margin-top: 60px; /* Adjust if your nav height changes */
+      margin-top: 60px;
     }
     /* Introduction section */
     .intro-container {
@@ -139,7 +139,7 @@
 <body>
   <header>
     <div class="video-container" style="position: relative; width: 100%; height: 100%;">
-      <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+      <video id="headerVideo" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
         <source src="images/Black Grey Illustrated Moon Space Astronaut Desktop Wallpaper.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -152,7 +152,8 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="about_me.html" class="active">About</a></li>
       <li>
-        <a href="projects.html">Projects</a>
+        <!-- The Projects link now includes an onclick handler for immediate navigation -->
+        <a href="projects.html" onclick="window.location.href=this.href;">Projects</a>
         <ul class="dropdown-menu">
           <li><a href="LifeOnceAgain.html">LifeOnceAgain</a></li>
           <li><a href="LotteryNumberGenerator.html">LotteryNumberGenerator</a></li>
@@ -180,18 +181,17 @@
             <p>I started by learning the basics of a computer, by observing and attempting to take one apart. Soon after, I began to learn coding.</p>
             <p>With my understanding of coding, I built this website as a portfolio to showcase all the accomplishments I’ve achieved in my self-learning journey and future career.</p>
           </article>
-         <article>
-  <article>
-  <h1>Accomplishments:</h1>
-  <p>
-    <img src="/images/computer-science.png" alt="Computer Science Icon" style="width: 30px; height: 30px; vertical-align: middle; margin-right: 10px; padding: 4px; border: 1px solid #ccc; border-radius: 4px;">
-    A.A.S (Applied Associate of Science) in Computer Information Systems
-  </p>
-  <p>
-    <img src="/images/coding.png" alt="Monitor Icon" style="width: 30px; height: 30px; vertical-align: middle; margin-right: 10px; padding: 4px; border: 1px solid #ccc; border-radius: 4px;">
-    B.S (Bachelors of Science) in Computer Science
-  </p>
-</article>
+          <article>
+            <h1>Accomplishments:</h1>
+            <p>
+              <img src="/images/computer-science.png" alt="Computer Science Icon" style="width: 30px; height: 30px; vertical-align: middle; margin-right: 10px; padding: 4px; border: 1px solid #ccc; border-radius: 4px;">
+              A.A.S (Applied Associate of Science) in Computer Information Systems
+            </p>
+            <p>
+              <img src="/images/coding.png" alt="Monitor Icon" style="width: 30px; height: 30px; vertical-align: middle; margin-right: 10px; padding: 4px; border: 1px solid #ccc; border-radius: 4px;">
+              B.S (Bachelors of Science) in Computer Science
+            </p>
+          </article>
           <article>
             <h1>Certificates:</h1>
             <!-- Add certificate details here -->
@@ -218,7 +218,7 @@
         });
       };
       setActiveTab();
-      // Disable right-click context menu on the video element (if present)
+      // Disable right-click context menu on the video element
       const headerVideo = document.getElementById('headerVideo');
       if (headerVideo) {
         headerVideo.addEventListener('contextmenu', function(e) {
@@ -243,4 +243,3 @@
   </script>
 </body>
 </html>
-
